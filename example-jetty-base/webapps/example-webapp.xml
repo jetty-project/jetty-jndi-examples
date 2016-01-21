@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
+
+<Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+  <Set name="contextPath">/</Set>
+  <Set name="war"><Property name="jetty.webapps"/>/example-webapp.war</Set>
+
+  <New id="webappage" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+    <Arg><Property name="wac"/></Arg>
+    <Arg>cfg/age</Arg>
+    <Arg type="java.lang.Integer">8000</Arg>
+    <Arg type="boolean">false</Arg>
+  </New>
+
+</Configure>

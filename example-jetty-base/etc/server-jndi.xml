@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
+
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+  <New id="mydb" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg><Ref refid="Server"/></Arg>
+    <Arg>jdbc/mydb</Arg>
+    <Arg>
+      <New class="org.hsqldb.jdbc.JDBCDataSource">
+        <Set name="DatabaseName">mem:example</Set>
+        <Set name="User">SA</Set>
+        <Set name="Password">""</Set>
+      </New>
+    </Arg>
+  </New>
+
+  <New id="myage" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+    <Arg><Property name="Server"/></Arg>
+    <Arg>cfg/age</Arg>
+    <Arg type="java.lang.Integer">400</Arg>
+    <Arg type="boolean">false</Arg>
+  </New>
+
+  <New id="mydate" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg></Arg>
+    <Arg>fmt/date</Arg>
+    <Arg>
+      <New class="com.company.demo.lib.FrankenFormat"/>
+    </Arg>
+  </New>
+
+</Configure>
